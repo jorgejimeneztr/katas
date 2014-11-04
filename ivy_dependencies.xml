@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Licensed to the Apache Software Foundation (ASF) under one or more contributor 
+	license agreements. See the NOTICE file distributed with this work for additional 
+	information regarding copyright ownership. The ASF licenses this file to 
+	you under the Apache License, Version 2.0 (the "License"); you may not use 
+	this file except in compliance with the License. You may obtain a copy of 
+	the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required 
+	by applicable law or agreed to in writing, software distributed under the 
+	License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS 
+	OF ANY KIND, either express or implied. See the License for the specific 
+	language governing permissions and limitations under the License. -->
+<ivy-module xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0" xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+	<info module="tralix-kata" organisation="com.tralix" resolver="all" revision="${dist.revision}.${ivy.new.build.number}.${env.BUILD_NUMBER}"/>
+
+	<!-- Configurations for all projects. Do NOT change! -->
+	<configurations>
+		<conf description="Libraries neeaded for every phase" name="general" visibility="public" transitive="false"/>
+		<conf description="Libraries neeaded only for compilation" name="compile" visibility="public"/>
+		<conf description="Libraries neeaded only for testing" name="test" visibility="public"/>
+	</configurations>
+
+	<!-- Artifacts to publish. Change accordingly. -->
+	<publications>
+		<artifact conf="general" ext="jar" name="${dist.name}"/>
+		<artifact conf="general" ext="pom" name="${dist.name}"/>
+	</publications>
+
+	<!-- Dependencies for your project. Change accordingly. -->
+	<dependencies>
+	
+<!-- 		Dependencias Test -->
+		<dependency conf="test->default" name="junit" org="junit" rev="4.11"/>
+		<dependency conf="test->default" org="com.googlecode.jmockit" name="jmockit" rev="1.4" />
+		<dependency conf="test->default" org="com.googlecode.jmockit" name="jmockit-coverage" rev="0.999.24" />
+		<dependency rev="1.8.4" name="mockito-all" org="org.mockito" conf="test->default" />
+		<dependency org="log4j" rev="1.2.14" name="log4j" conf="test->default" />
+		<dependency org="slf4j" rev="1.5.11" name="slf4j-api" conf="test->default" />
+		<dependency org="slf4j" rev="1.5.11" name="slf4j-log4j12" conf="test->default" />
+	</dependencies>
+
+</ivy-module>
