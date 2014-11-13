@@ -33,4 +33,11 @@ public class GameOfLifeTest {
         assertEquals(DEAD, game.nextOffspring(ALIVE, 4));
         assertEquals(DEAD, game.nextOffspring(ALIVE, 5));
     }
+
+    @Test
+    public void givenDeadCellWithNeighborsDifrentThanThree_retrunDead() throws Exception {
+        assertEquals(DEAD, game.nextOffspring(DEAD, 0));
+        assertEquals(DEAD, game.nextOffspring(DEAD, 2));
+        assertEquals(DEAD, game.nextOffspring(DEAD, 4));
+    }
 }
