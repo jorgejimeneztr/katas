@@ -7,10 +7,14 @@ public class GameOfLife {
 
     public int nextOffspring(final int status, final int neighbors) {
         if (status == ALIVE) {
-            if (neighbors > 1) {
+            if (inOffspringRange(neighbors)) {
                 return ALIVE;
             }
         }
         return DEAD;
+    }
+
+    private boolean inOffspringRange(final int neighbors) {
+        return neighbors > 1 && neighbors < 4;
     }
 }

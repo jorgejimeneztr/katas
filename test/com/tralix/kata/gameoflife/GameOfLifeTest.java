@@ -7,6 +7,8 @@ import org.junit.Test;
 
 public class GameOfLifeTest {
 
+    private static final int ALIVE = GameOfLife.ALIVE;
+    private static final int DEAD = GameOfLife.DEAD;
     private GameOfLife game;
 
     @Before
@@ -16,14 +18,19 @@ public class GameOfLifeTest {
 
     @Test
     public void givenLiveCellWithNoOrOneNeighbors_returnDead() throws Exception {
-        assertEquals(GameOfLife.DEAD, game.nextOffspring(1, 0));
-        assertEquals(GameOfLife.DEAD, game.nextOffspring(1, 1));
+        assertEquals(DEAD, game.nextOffspring(ALIVE, 0));
+        assertEquals(DEAD, game.nextOffspring(ALIVE, 1));
     }
 
     @Test
     public void givenAliveCellWithTwoOrThreeNeighbors_returnAlive() throws Exception {
-        assertEquals(GameOfLife.ALIVE, game.nextOffspring(1, 2));
-        assertEquals(GameOfLife.ALIVE, game.nextOffspring(1, 3));
+        assertEquals(ALIVE, game.nextOffspring(ALIVE, 2));
+        assertEquals(ALIVE, game.nextOffspring(1, 3));
+    }
 
+    @Test
+    public void givenAliveCellWithFourOrMoreNeighbors_retrunDead() throws Exception {
+        assertEquals(DEAD, game.nextOffspring(ALIVE, 4));
+        assertEquals(DEAD, game.nextOffspring(ALIVE, 5));
     }
 }
