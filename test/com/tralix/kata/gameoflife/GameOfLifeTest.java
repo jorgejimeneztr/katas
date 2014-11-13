@@ -40,4 +40,25 @@ public class GameOfLifeTest {
         assertEquals(DEAD, game.nextOffspring(DEAD, 2));
         assertEquals(DEAD, game.nextOffspring(DEAD, 4));
     }
+
+    @Test
+    public void givenDeadCellWithThreeNeighbors_retrunAlive() throws Exception {
+        assertEquals(ALIVE, game.nextOffspring(DEAD, 3));
+    }
+
+    @Test
+    public void givenGread_CalculateNeigbors() throws Exception {
+        int[][] grid = generateAllAliveGrid();
+        assertEquals(8, game.calculateNeigbors(grid, 1, 1));
+        assertEquals(3, game.calculateNeigbors(grid, 0, 0));
+        assertEquals(5, game.calculateNeigbors(grid, 0, 1));
+        int[][] gridAllDead = new int[3][3];
+        assertEquals(0, game.calculateNeigbors(gridAllDead, 1, 1));
+        assertEquals(0, game.calculateNeigbors(gridAllDead, 0, 0));
+        assertEquals(0, game.calculateNeigbors(gridAllDead, 0, 1));
+    }
+
+    private int[][] generateAllAliveGrid() {
+        return new int[][] { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } };
+    }
 }
