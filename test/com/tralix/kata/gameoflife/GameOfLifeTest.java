@@ -15,8 +15,15 @@ public class GameOfLifeTest {
     }
 
     @Test
-    public void givenLiveCellWithNoNeighbors_ret() throws Exception {
-        int result = game.nextOffspring(1, 0);
-        assertEquals(GameOfLife.DEAD, result);
+    public void givenLiveCellWithNoOrOneNeighbors_returnDead() throws Exception {
+        assertEquals(GameOfLife.DEAD, game.nextOffspring(1, 0));
+        assertEquals(GameOfLife.DEAD, game.nextOffspring(1, 1));
+    }
+
+    @Test
+    public void givenAliveCellWithTwoOrThreeNeighbors_returnAlive() throws Exception {
+        assertEquals(GameOfLife.ALIVE, game.nextOffspring(1, 2));
+        assertEquals(GameOfLife.ALIVE, game.nextOffspring(1, 3));
+
     }
 }
