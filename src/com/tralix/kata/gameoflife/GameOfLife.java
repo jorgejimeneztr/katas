@@ -5,7 +5,7 @@ public class GameOfLife {
     public static final int DEAD = 0;
     public static final int ALIVE = 1;
 
-    public int nextOffspring(final int status, final int neighbors) {
+    public int statusInOffspring(final int status, final int neighbors) {
         switch (neighbors) {
         case 2:
             return status;
@@ -20,13 +20,13 @@ public class GameOfLife {
         int neighbors = 0 - grid[x][y];
         for (int i = x - 1; i < x + 2; i++) {
             for (int j = y - 1; j < y + 2; j++) {
-                neighbors += exitIn(grid, i, j);
+                neighbors += existIn(grid, i, j);
             }
         }
         return neighbors;
     }
 
-    private int exitIn(final int[][] grid, final int x, final int y) {
+    private int existIn(final int[][] grid, final int x, final int y) {
         if (outOfRange(grid, x, y)) {
             return 0;
         } else {

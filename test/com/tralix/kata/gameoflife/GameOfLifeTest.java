@@ -18,32 +18,32 @@ public class GameOfLifeTest {
 
     @Test
     public void givenLiveCellWithNoOrOneNeighbors_returnDead() throws Exception {
-        assertEquals(DEAD, game.nextOffspring(ALIVE, 0));
-        assertEquals(DEAD, game.nextOffspring(ALIVE, 1));
+        assertEquals(DEAD, game.statusInOffspring(ALIVE, 0));
+        assertEquals(DEAD, game.statusInOffspring(ALIVE, 1));
     }
 
     @Test
     public void givenAliveCellWithTwoOrThreeNeighbors_returnAlive() throws Exception {
-        assertEquals(ALIVE, game.nextOffspring(ALIVE, 2));
-        assertEquals(ALIVE, game.nextOffspring(1, 3));
+        assertEquals(ALIVE, game.statusInOffspring(ALIVE, 2));
+        assertEquals(ALIVE, game.statusInOffspring(1, 3));
     }
 
     @Test
     public void givenAliveCellWithFourOrMoreNeighbors_retrunDead() throws Exception {
-        assertEquals(DEAD, game.nextOffspring(ALIVE, 4));
-        assertEquals(DEAD, game.nextOffspring(ALIVE, 5));
+        assertEquals(DEAD, game.statusInOffspring(ALIVE, 4));
+        assertEquals(DEAD, game.statusInOffspring(ALIVE, 5));
     }
 
     @Test
     public void givenDeadCellWithNeighborsDifrentThanThree_retrunDead() throws Exception {
-        assertEquals(DEAD, game.nextOffspring(DEAD, 0));
-        assertEquals(DEAD, game.nextOffspring(DEAD, 2));
-        assertEquals(DEAD, game.nextOffspring(DEAD, 4));
+        assertEquals(DEAD, game.statusInOffspring(DEAD, 0));
+        assertEquals(DEAD, game.statusInOffspring(DEAD, 2));
+        assertEquals(DEAD, game.statusInOffspring(DEAD, 4));
     }
 
     @Test
     public void givenDeadCellWithThreeNeighbors_retrunAlive() throws Exception {
-        assertEquals(ALIVE, game.nextOffspring(DEAD, 3));
+        assertEquals(ALIVE, game.statusInOffspring(DEAD, 3));
     }
 
     @Test
