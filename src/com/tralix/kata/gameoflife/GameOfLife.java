@@ -35,6 +35,16 @@ public class GameOfLife {
     }
 
     private boolean outOfRange(final int[][] grid, final int x, final int y) {
-        return x < 0 || x >= grid.length || y < 0 || x >= grid[0].length;
+        return x < 0 || x >= grid.length || y < 0 || y >= grid[0].length;
+    }
+
+    public int[][] nextOffspring(final int[][] grid) {
+        int[][] offspring = new int[grid.length][grid[0].length];
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+                offspring[i][j] = statusInOffspring(grid[i][j], calculateNeigbors(grid, i, j));
+            }
+        }
+        return offspring;
     }
 }
