@@ -40,11 +40,15 @@ public class GameOfLife {
 
     public int[][] nextOffspring(final int[][] grid) {
         int[][] offspring = new int[grid.length][grid[0].length];
+        fillOffspring(grid, offspring);
+        return offspring;
+    }
+
+    private void fillOffspring(final int[][] grid, final int[][] offspring) {
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[0].length; j++) {
                 offspring[i][j] = statusInOffspring(grid[i][j], calculateNeigbors(grid, i, j));
             }
         }
-        return offspring;
     }
 }
