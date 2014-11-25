@@ -1,29 +1,32 @@
 package com.tralix.kata.gameoflife;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class GameOfLife {
 
     public static final int DEAD = 0;
     public static final int ALIVE = 1;
 
     public int statusInOffspring(final int status, final int neighbors) {
-        switch (neighbors) {
-        case 2:
-            return status;
-        case 3:
-            return ALIVE;
-        default:
-            return DEAD;
-        }
+        return getStatus(generateMap(status), neighbors);
+    }
+
+    private int getStatus(final Map<Integer, Integer> map, final int neighbors) {
+        return map.get(neighbors) == null ? DEAD : map.get(neighbors);
+    }
+
+    private Map<Integer, Integer> generateMap(final int status) {
+        Map<Integer, Integer> offspringRules = new HashMap<Integer, Integer>();
+        offspringRules.put(3, ALIVE);
+        offspringRules.put(2, status);
+        return offspringRules;
     }
 
     public int calculateNeigbors(final int[][] grid, final int x, final int y) {
-        int neighbors = 0 - grid[x][y];
-        for (int i = x - 1; i < x + 2; i++) {
-            for (int j = y - 1; j < y + 2; j++) {
-                neighbors += existIn(grid, i, j);
-            }
-        }
-        return neighbors;
+        return existIn(grid, x - 1, y - 1) + existIn(grid, x - 1, y) + existIn(grid, x - 1, y + 1)
+                + existIn(grid, x, y - 1) + existIn(grid, x, y + 1) + existIn(grid, x + 1, y - 1)
+                + existIn(grid, x + 1, y) + existIn(grid, x + 1, y + 1);
     }
 
     private int existIn(final int[][] grid, final int x, final int y) {

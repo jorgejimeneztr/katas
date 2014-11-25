@@ -28,10 +28,14 @@ public class LifeNoCycles {
     }
 
     private int addNeighbor(final int[][] space, final int x, final int y) {
-        if (x < space.length && x > -1 && y < space[0].length && y > -1) {
+        if (inAllowedSpace(space, x, y)) {
             return space[x][y];
         }
         return 0;
+    }
+
+    private boolean inAllowedSpace(final int[][] space, final int x, final int y) {
+        return x < space.length && x > -1 && y < space[0].length && y > -1;
     }
 
     public int[][] nextOffspring(final int[][] space) {
@@ -45,10 +49,9 @@ public class LifeNoCycles {
     }
 
     private void fillOffspring(final int[][] space, final int[][] offspring, final int x, final int y) {
-        if (noMoreRows(space, y)) {
-            return;
+        if (hasMoreRows(space, y)) {
+            fillNextCell(space, offspring, x, y);
         }
-        fillNextCell(space, offspring, x, y);
     }
 
     private void fillNextCell(final int[][] space, final int[][] offspring, final int x, final int y) {
@@ -60,8 +63,8 @@ public class LifeNoCycles {
         }
     }
 
-    private boolean noMoreRows(final int[][] space, final int y) {
-        return y >= space[0].length;
+    private boolean hasMoreRows(final int[][] space, final int y) {
+        return y < space[0].length;
     }
 
     private boolean junpRequired(final int[][] space, final int x) {
